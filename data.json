@@ -7,5 +7,7 @@
           "News":"Hi MR.Maleky"},
 
   "Uncle":{"State":false,
-          "Elat":"پولمو ندادی"}
+          "Elat":"پولمو ندادی",
+          "News":"عمو جان گوزو است",
+          "sendNotify":true}
 }

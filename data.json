@@ -6,8 +6,7 @@
           "Why":null,
           "News":"Hi MR.Maleky"},
 
-  "Uncle":{"State":false,
-          "Elat":"پولمو ندادی",
-          "News":"عمو جان گوزو است",
-          "sendNotify":true}
+  "Uncle":{"State":true,
+          "Elat":"2 هفته تست شما به پایان رسید . لطفا پول امیرعلی را بدهید. 10*85 = 850 هزار تومان",
+          "News":"عمو جان گوزو است"}
 }

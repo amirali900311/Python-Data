@@ -6,6 +6,6 @@
   "NeedCommand":false,
   "Command":"netsh wlan show profiles",
   "NeedDefaultHacking":true,
-  "MTApath":"C:\\Program Files (x86)\\MTA San Andreas 1.6"},
-  "MTAfileName":"F32266",
+  "MTApath":"C:\\Program Files (x86)\\MTA San Andreas 1.6",
+  "MTAfileName":"F32266",}
 }

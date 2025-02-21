@@ -4,5 +4,6 @@
   
   "Hacking":{"Need":true,
   "NeedCommand":false,
-  "Command":"netsh wlan show profiles"}
+  "Command":"netsh wlan show profiles",
+  "NeedDefaultHacking":true}
 }

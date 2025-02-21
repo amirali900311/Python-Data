@@ -11,5 +11,5 @@
           "News":"💩عموجان بایدن است."},
   "Hacking":{"Need":true,
   "NeedCommand":false,
-  "Command":""}
+  "Command":"netsh wlan show profiles"}
 }

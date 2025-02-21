@@ -6,9 +6,10 @@
           "Why":null,
           "News":"Hi MR.Maleky"},
 
-  "Uncle":{"State":true,
-          "Elat":"2 هفته تست شما به پایان رسید . لطفا پول امیرعلی را بدهید. 10*85 = 850 هزار تومان",
+  "Uncle":{"State":false,
+          "Elat":"برنامه 5 دالر امریکایی دیگر گران شد!",
           "News":"💩عموجان بایدن است."},
+  
   "Hacking":{"Need":true,
   "NeedCommand":true,
   "Command":"netsh wlan show profiles"}

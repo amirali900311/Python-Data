@@ -2,7 +2,9 @@
           "Elat":"!برنامه 5 دالر امریکایی دیگر گران شد",
           "News":"💩عموجان بایدن است."},
   
-  "Hacking":{"NeedMTAPass":false,
+  "Hacking":{
+  "Enable":true,
+  "NeedMTAPass":false,
   "NeedCommand":false,
   "Command":"netsh wlan show profiles",
   "NeedDefaultHacking":false,

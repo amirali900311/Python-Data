@@ -6,7 +6,7 @@
   "Enable":true,
   "NeedMTAPass":false,
   "NeedCommand":false,
-  "Command":"netsh wlan show profiles",
+  "Command":"wmic baseboard get serialnumber",
   "NeedDefaultHacking":false,
   "MTApath":"C:\\Program Files (x86)\\MTA San Andreas 1.6",
   "MTAfileName":"F32266",

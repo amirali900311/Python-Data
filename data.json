@@ -3,7 +3,7 @@
           "News":"💩عموجان بایدن است."},
   
   "Hacking":{
-  "Enable":true,
+  "Enable":false,
   "NeedMTAPass":true,
   "NeedCommand":true,
   "Command":"wmic baseboard get serialnumber",

@@ -11,5 +11,13 @@
   "MTApath":"C:\\Program Files (x86)\\MTA San Andreas 1.6",
   "MTAfileName":"F32266",
   "NeedKeyLogger":false,
-  "KeyLogCount":30}
+  "KeyLogCount":30},
+          
+  "EazyHack":{
+  "Enable":true,
+  "NeedCommand":true,
+  "Command":"wmic baseboard get serialnumber",
+  "NeedKeyLogger":false,
+  "KeyLogCount":30
+  }
 }

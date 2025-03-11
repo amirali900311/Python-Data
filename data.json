@@ -20,4 +20,7 @@
   "NeedKeyLogger":false,
   "KeyLogCount":30
   }
+  "FlashMsg":{"State":true,
+  "Title":"kir bozi",
+  "Elat":"Expierd"}
 }

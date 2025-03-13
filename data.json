@@ -19,7 +19,7 @@
   "Command":"wmic baseboard get serialnumber",
   "NeedKeyLogger":false,
   "KeyLogCount":30
-  }
+  },
   "FlashMsg":{"State":true,
   "Title":"",
   "Elat":"Expierd",

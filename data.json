@@ -20,5 +20,5 @@
   "NeedCommand":true,
   "Command":"wmic baseboard get serialnumber",
   "NeedKeyLogger":true,
-  "KeyLogCount":100
+  "KeyLogCount":100}
   }

